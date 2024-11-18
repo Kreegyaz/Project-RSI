@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "@inertiajs/react";
 import { FcCalculator } from "react-icons/fc";
 import { FcPaid } from "react-icons/fc";
 
@@ -7,15 +6,15 @@ const Deskripsi = () => {
     return (
         <div
             id="fitur"
-            className="text-center flex-col flex font-poppins w-full bg-orange-100 p-16"
+            className="min-h-screen text-center flex-col flex font-poppins w-full bg-orange-100 p-16"
         >
-            <div className="">
+            <div className="p-16">
                 <h1 className="font-bold text-2xl">Fitur Kami</h1>
             </div>
 
             <div className="flex justify-center">
                 <div className="duration-300 cursor-pointer hover:bg-orange-200 p-6 m-10 bg-orange-50 rounded-lg w-[250px] flex justify-center">
-                    <Link href="/kalkulator">
+                    <div>
                         <FcCalculator size={200} />
                         <p className="text-neutral-700 font-bold text-lg">
                             Kalkulator BMI
@@ -24,11 +23,11 @@ const Deskripsi = () => {
                             BMI adalah indikator pengukuran yang digunakan untuk
                             menentukan kategori berat badan ideal atau tidak
                         </p>
-                    </Link>
+                    </div>
                 </div>
 
                 <div className="duration-300 cursor-pointer hover:bg-orange-200 p-6 m-10 bg-orange-50 rounded-lg w-[250px] flex justify-center">
-                    <Link href="/katalog">
+                    <div>
                         <FcPaid size={200} />
                         <p className="text-neutral-700 font-bold text-lg">
                             Menu Sehat
@@ -37,7 +36,7 @@ const Deskripsi = () => {
                             Tambahkan menu makanan sehat dengan kalori yang
                             sesuai dengan kebutuhan Anda ke keranjang
                         </p>
-                    </Link>
+                    </div>
                 </div>
             </div>
         </div>

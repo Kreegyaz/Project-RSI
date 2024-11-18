@@ -1,15 +1,15 @@
 import React from "react";
-import LandingPageLayout from "../Layouts/LandingPageLayout";
-import Deskripsi from '../Components/DestinationPage/About'
-import OurFeatures from '../Components/DestinationPage/OurFeatures'
+import LandingPageLayout from "../components/Layout/LandingPageLayout";
+import Deskripsi from "../Components/DestinationPage/About";
+import Preview from "../components/DestinationPage/Preview";
 
 const LandingPage = () => {
-    return(
+    return (
         <LandingPageLayout>
-            <Deskripsi/>
-            <OurFeatures/>
+            <Deskripsi />
+            <Preview />
         </LandingPageLayout>
-    )
-}
+    );
+};
 
 export default LandingPage;
