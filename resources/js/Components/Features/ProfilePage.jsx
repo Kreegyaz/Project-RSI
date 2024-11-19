@@ -5,14 +5,12 @@ import { Link, useForm, usePage } from "@inertiajs/react";
 export default function ProfilePage() {
     const user = usePage().props.auth.user;
 
-    const { data, setData, patch, errors, processing, recentlySuccessful } =
-        useForm({
-            username: user.name,
-            name: user.name,
-            email: user.email,
-            phone: user.phone,
-            address: user.address,
-        });
+    const { data, setData, patch, processing, recentlySuccessful } = useForm({
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        address: user.address,
+    });
 
     const [isEditing, setIsEditing] = useState(false);
 
@@ -36,14 +34,23 @@ export default function ProfilePage() {
     };
 
     const handleSaveClick = (e) => {
+        e.preventDefault();
+        patch(route("profile.update"), {
+            onSuccess: () => {
+                console.log("Profile updated successfully.");
+            },
+            onError: (errors) => {
+                console.error("Errors:", errors);
+            },
+        });
         setIsEditing(false);
         console.log("Profile saved:", data);
     };
 
-    const handleUpdate = (e) => {
-        e.preventDefault();
-        patch(route("profile.update"));
-    };
+    // const handleUpdate = (e) => {
+    //     e.preventDefault();
+    //     patch(route("profile.update"));
+    // };
 
     // const handleInputChange = (e) => {
     //     const { name, value } = e.target;
@@ -68,13 +75,13 @@ export default function ProfilePage() {
     //     patch(route("profile.update"));
     // };
 
-    const labels = {
-        username: "name",
-        name: "name",
-        email: "email",
-        phone: "phone",
-        address: "address",
-    };
+    // const labels = {
+    //     username: "username",
+    //     name: "name",
+    //     email: "email",
+    //     phone: "phone",
+    //     address: "address",
+    // };
 
     return (
         <div className="flex min-h-screen bg-gray-50 font-poppins">
@@ -130,23 +137,24 @@ export default function ProfilePage() {
                             </>
                         )}
                     </button>
-
-                    <Link
-                        href={route("logout")}
-                        method="post"
-                        className="text-blue-500 underline flex"
-                        as="button"
-                    >
-                        Log Out
-                    </Link>
+                    <div>
+                        <Link
+                            href={route("logout")}
+                            method="post"
+                            className="mt-3 rounded-full bg-teal-500 text-white text-sm hover:bg-teal-700 px-4 py-1"
+                            as="button"
+                        >
+                            Log Out
+                        </Link>
+                    </div>
                 </div>
             </aside>
 
             {/* Main Content */}
-            <main className="flex-1 p-6 md:p-10">
+            <main className="flex-1 p-6 md:p-10 ">
                 <form
-                    className="form-container mx-auto border border-blue-500 p-6 bg-white rounded-lg shadow-md max-w-4xl"
-                    onSubmit={handleUpdate}
+                    className="form-container mx-auto border border-blue-500 p-6 bg-white rounded-lg shadow-md max-w-4xl "
+                    onSubmit={handleSaveClick}
                 >
                     {isEditing ? (
                         <>
@@ -155,7 +163,7 @@ export default function ProfilePage() {
                             </h1>
 
                             {/* Input Fields for Profile */}
-                            {Object.keys(data).map((key) => (
+                            {/* {Object.keys(data).map((key) => (
                                 <div className="mb-4" key={key}>
                                     <label className="block text-xs font-medium">
                                         {labels[key]}
@@ -165,16 +173,88 @@ export default function ProfilePage() {
                                         name={key}
                                         value={data[key]}
                                         onChange={(e) =>
-                                            setData(
-                                                `${labels[key]}`,
-                                                e.target.value
-                                            )
+                                            setData(labels[key], e.target.value)
                                         }
                                         className="input-field mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                                         placeholder={labels[key]}
                                     />
                                 </div>
-                            ))}
+                            ))} */}
+
+                            <label className="block text-xs font-medium">
+                                username
+                            </label>
+                            <input
+                                id="name"
+                                type="text"
+                                name="name"
+                                value={data.name}
+                                onChange={(e) =>
+                                    setData("name", e.target.value)
+                                }
+                                className="input-field mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 mb-4"
+                                placeholder={"username"}
+                            />
+
+                            <label className="block text-xs font-medium">
+                                name
+                            </label>
+                            <input
+                                id="name"
+                                type="text"
+                                name="name"
+                                value={data.name}
+                                onChange={(e) =>
+                                    setData("name", e.target.value)
+                                }
+                                className="input-field mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 mb-4"
+                                placeholder={"name"}
+                            />
+
+                            <label className="block text-xs font-medium">
+                                email
+                            </label>
+                            <input
+                                id="email"
+                                type="email"
+                                name="email"
+                                value={data.email}
+                                onChange={(e) =>
+                                    setData("email", e.target.value)
+                                }
+                                className="input-field mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 mb-4"
+                                placeholder={"email"}
+                            />
+
+                            <label className="block text-xs font-medium">
+                                phone
+                            </label>
+                            <input
+                                id="phone"
+                                type="text"
+                                name="phone"
+                                value={data.phone}
+                                onChange={(e) =>
+                                    setData("phone", e.target.value)
+                                }
+                                className="input-field mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 mb-4"
+                                placeholder={"phone"}
+                            />
+
+                            <label className="block text-xs font-medium">
+                                address
+                            </label>
+                            <input
+                                id="address"
+                                type="text"
+                                name="address"
+                                value={data.address}
+                                onChange={(e) =>
+                                    setData("address", e.target.value)
+                                }
+                                className="input-field mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 mb-4"
+                                placeholder={"address"}
+                            />
 
                             {/* Buttons */}
                             <div className="flex justify-between items-center mt-4">
@@ -199,14 +279,44 @@ export default function ProfilePage() {
                             <h1 className="text-xl font-semibold mb-4">
                                 Profil
                             </h1>
-                            {Object.keys(data).map((key) => (
+                            {/* {Object.keys(data).map((key) => (
                                 <div className="mb-4" key={key}>
                                     <label className="block text-xs font-medium">
                                         {labels[key]}
                                     </label>
                                     <p>{data[key]}</p>
                                 </div>
-                            ))}
+                            ))} */}
+                            <div className="mb-4">
+                                <label className="block text-xs font-medium">
+                                    {"username"}
+                                </label>
+                                <p>{data.name}</p>
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-xs font-medium">
+                                    {"name"}
+                                </label>
+                                <p>{data.name}</p>
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-xs font-medium">
+                                    {"email"}
+                                </label>
+                                <p>{data.email}</p>
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-xs font-medium">
+                                    {"phone"}
+                                </label>
+                                <p>{data.phone}</p>
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-xs font-medium">
+                                    {"address"}
+                                </label>
+                                <p>{data.address}</p>
+                            </div>
                         </>
                     )}
                 </form>
