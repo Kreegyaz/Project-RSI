@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@inertiajs/react";
 import { FaArrowLeft, FaSearch, FaCartPlus, FaMinus, FaPlus, FaStar } from "react-icons/fa";
 
 
@@ -32,7 +32,7 @@ function ProductDetail() {
 
       {/* Tombol Kembali */}
       <div className="px-20 flex items-center space-x-3">
-        <Link to='/katalog'>
+        <Link href='/katalog'>
           <button className="p-2 bg-gray-100 rounded-full">
             <FaArrowLeft className="w-5 h-5 text-gray-600" />
           </button>
@@ -82,7 +82,7 @@ function ProductDetail() {
               </button>
             </div>
             <button className="duration-300 hover:bg-gray-300 bg-gray-200 text-black px-4 py-2 rounded-full">
-              <Link to='/keranjang' className="text-sm">Tambahkan ke keranjang</Link>
+              <Link href='/keranjang' className="text-sm">Tambahkan ke keranjang</Link>
             </button>
           </div>
         </div>

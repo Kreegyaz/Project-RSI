@@ -118,7 +118,7 @@ export default function ProfilePage() {
                     </h2>
                     <button
                         onClick={isEditing ? handleViewClick : handleEditClick}
-                        className="text-blue-500 underline"
+                        className="text-teal-700"
                     >
                         {isEditing ? (
                             <>
@@ -131,21 +131,23 @@ export default function ProfilePage() {
                         )}
                     </button>
 
-                    <Link
-                        href={route("logout")}
-                        method="post"
-                        className="text-blue-500 underline flex"
-                        as="button"
-                    >
-                        Log Out
-                    </Link>
+                    <div className="mt-10">
+                        <Link
+                            href={route("logout")}
+                            method="post"
+                            className="py-1 px-4 rounded-full bg-teal-500 hover:bg-teal-700 text-white"
+                            as="button"
+                        >
+                            Log Out 
+                        </Link>
+                    </div>
                 </div>
             </aside>
 
             {/* Main Content */}
             <main className="flex-1 p-6 md:p-10">
                 <form
-                    className="form-container mx-auto border border-blue-500 p-6 bg-white rounded-lg shadow-md max-w-4xl"
+                    className="form-container mx-auto border border-teal-500 p-6 bg-white rounded-lg shadow-md max-w-4xl"
                     onSubmit={handleUpdate}
                 >
                     {isEditing ? (
