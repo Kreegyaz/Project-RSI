@@ -11,9 +11,7 @@ export default function Login() {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("login"), {
-            onFinish: () => reset("password"),
-        });
+        post(route("login"));
     };
 
     return (
@@ -24,8 +22,7 @@ export default function Login() {
 
             <div className="w-1/2 h-full flex flex-col p-20 justify-between">
                 <h1 className="text-4xl font-bold px-8">BitesWise</h1>
-                <p className="text-xl font-medium mt-2 px-8">
-                    Sign In to BitesWise
+                <p className="text-xl font-medium mt-2 px-8">                    Sign In to BitesWise
                 </p>
                 <form
                     className="w-full flex flex-col px-8 mt-5"

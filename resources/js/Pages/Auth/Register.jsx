@@ -12,10 +12,15 @@ export default function Register() {
 
     const submit = (e) => {
         e.preventDefault();
+        console.log(data.name);
+        console.log(data.email);
+        console.log(data.password);
 
-        post(route("register"), {
-            onFinish: () => reset("password"),
-        });
+        // post(route("register"), {
+        //     onFinish: () => reset("password"),
+        // });
+
+        post(route("register"));
     };
 
     return (

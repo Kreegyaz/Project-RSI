@@ -1,8 +1,9 @@
+import { Link } from "@inertiajs/react";
 import React from "react";
 import { FcCalculator } from "react-icons/fc";
 import { FcPaid } from "react-icons/fc";
 
-const Deskripsi = () => {
+export default function Deskripsi() {
     return (
         <div
             id="fitur"
@@ -14,7 +15,7 @@ const Deskripsi = () => {
 
             <div className="flex justify-center">
                 <div className="duration-300 cursor-pointer hover:bg-orange-200 p-6 m-10 bg-orange-50 rounded-lg w-[250px] flex justify-center">
-                    <div>
+                    <Link href="/login">
                         <FcCalculator size={200} />
                         <p className="text-neutral-700 font-bold text-lg">
                             Kalkulator BMI
@@ -23,11 +24,11 @@ const Deskripsi = () => {
                             BMI adalah indikator pengukuran yang digunakan untuk
                             menentukan kategori berat badan ideal atau tidak
                         </p>
-                    </div>
+                    </Link>
                 </div>
 
                 <div className="duration-300 cursor-pointer hover:bg-orange-200 p-6 m-10 bg-orange-50 rounded-lg w-[250px] flex justify-center">
-                    <div>
+                    <Link href="/login">
                         <FcPaid size={200} />
                         <p className="text-neutral-700 font-bold text-lg">
                             Menu Sehat
@@ -36,11 +37,11 @@ const Deskripsi = () => {
                             Tambahkan menu makanan sehat dengan kalori yang
                             sesuai dengan kebutuhan Anda ke keranjang
                         </p>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </div>
     );
-};
+}
 
-export default Deskripsi;
+// export default Deskripsi;
