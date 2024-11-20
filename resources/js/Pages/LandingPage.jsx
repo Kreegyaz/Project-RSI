@@ -4,6 +4,7 @@ import Deskripsi from "../Components/DestinationPage/About";
 import Preview from "../components/DestinationPage/Preview";
 
 const LandingPage = () => {
+    
     return (
         <LandingPageLayout>
             <Deskripsi />

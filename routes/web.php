@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -37,8 +39,31 @@ Route::get('/beranda', function () {
     return Inertia::render('Beranda');
 })->name('beranda');
 
+Route::get('/detail', function () {
+    return Inertia::render('Detail');
+})->name('detail');
+
+// Route::resource('produk', ProductController::class);
+// Route::resource('cart', CartController::class);
+
+
+// Route::get('/produk/{id}', [ProductController::class, 'show'])->name('produk.detail');
+// Route::post('/keranjang/store', [CartController::class, 'store'])->name('cart.store');
+Route::get('/katalog', [ProductController::class, 'index'])->name('katalog.index');
+Route::get('/produk/{id}', [ProductController::class, 'show'])->name('produk.show');
+
+// Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+// Route::patch('/cart/{id}', [CartController::class, 'update'])->name('cart.update');
+// Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
 
 Route::middleware('auth')->group(function () {
+    Route::post('/keranjang/store', [CartController::class, 'store'])->name('cart.store');
+    Route::get('/keranjang', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/keranjang', [CartController::class, 'store'])->name('cart.store');
+    Route::put('/keranjang/{id}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/keranjang/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

@@ -1,13 +1,13 @@
 import React from "react";
 import MainPageLayout from "../components/Layout/MainPageLayout";
-import DetailProduk from '../components/Features/DetailProduk'
+import DetailProduk from "../components/Features/DetailProduk";
 
 const LandingPages = () => {
-    return(
+    return (
         <MainPageLayout>
-            <DetailProduk/>
+            <DetailProduk />
         </MainPageLayout>
-    )
-}
+    );
+};
 
 export default LandingPages;
