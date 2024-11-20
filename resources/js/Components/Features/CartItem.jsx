@@ -157,13 +157,12 @@ import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 
 // export default CartItem;
 export default function CartItem({
-    id,
     name,
     image,
     price,
     initialQuantity,
-    onQuantityChange,
     onRemove,
+    onTotalChange,
 }) {
     const [quantity, setQuantity] = useState(initialQuantity);
     const [isChecked, setIsChecked] = useState(true);
@@ -173,7 +172,7 @@ export default function CartItem({
     const handleIncrease = () => {
         const newQuantity = quantity + 1;
         setQuantity(newQuantity);
-        onTotalChange(price); // Tambah harga total
+        onTotalChange(+price); // Tambah harga total
     };
 
     const handleDecrease = () => {
@@ -184,7 +183,6 @@ export default function CartItem({
         }
     };
 
-    // Fungsi untuk mengubah status checkbox
     const handleCheckboxChange = (event) => {
         const isNowChecked = event.target.checked; // Mendapatkan status terbaru checkbox
         if (isNowChecked) {
